@@ -1,0 +1,34 @@
+---
+# ansible-role-GENERIC/tasks/setup_RedHat.yml
+
+
+# Install using yum
+- name: "Setup | RedHat | ensure GENERIC's package(s) present"
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items: GENERIC_pkg_names
+
+
+# Download and install RPM file for RedHat
+- name: "Setup | RedHat | ensure temporary download dir can read, write, execute"
+  file:
+    path: "{{ GENERIC_dir_tmp_download }}"
+    state: directory
+    mode: "u+rwx"
+    owner: "{{ ansible_ssh_user }}"
+
+- name: "Setup | RedHat | download GENERIC's rpm file(s)"
+  get_url:
+    url: "{{ item.0 }}"
+    dest: "{{ GENERIC_dir_tmp_download }}/{{ item.1 }}.rpm"
+  with_together:
+    - GENERIC_pkg_urls
+    - GENERIC_pkg_names
+
+- name: "Setup | RedHat | install GENERIC's rpm file(s)"
+  sudo: Yes
+  yum:
+    name: "{{ GENERIC_dir_tmp_download }}/{{ item }}.rpm"
+    state: present
+  with_items: GENERIC_pkg_names

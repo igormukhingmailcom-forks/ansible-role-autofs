@@ -1,0 +1,19 @@
+---
+# ansible-role-GENERIC/tasks/main.yml
+
+
+- name: "Variable loading tasks"
+  include: vars.yml
+  tags: ['Vars']
+
+
+- name: "Setup tasks"
+  sudo: Yes
+  include: setup.yml
+  tags: ['Setup']
+  
+  
+- name: "Config tasks"
+  include: config.yml
+  tags: ['Config']
+  

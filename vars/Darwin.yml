@@ -1,0 +1,6 @@
+---
+# ansible-role-GENERIC/vars/Darwin.yml
+
+__GENERIC_pkg_names: []
+__GENERIC_pkg_urls: []
+__GENERIC_dir_install: ""

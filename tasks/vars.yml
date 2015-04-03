@@ -1,0 +1,38 @@
+---
+# ansible-role-GENERIC/tasks/vars.yml
+
+
+# Look for distribution, os family, and then system. If none found. Error.
+- name: "Vars | Load | most specific OS variables available"
+  include_vars: "{{ item }}"
+  with_first_found:
+    # - "{{ ansible_system }}_{{ ansible_os_family }}_{{ ansible_distribution }}.yml"
+    # - "{{ ansible_system }}_{{ ansible_os_family }}.yml"
+    - "{{ ansible_system }}.yml"
+
+
+# Override OS variables
+- name: "Vars | No User Input | set GENERIC_pkg_names to OS var"
+  set_fact:
+    GENERIC_pkg_names: "{{ __GENERIC_pkg_names }}"
+  when: GENERIC_pkg_names is not defined  
+    
+  
+- name: "Vars | No User Input | set GENERIC_pkg_urls  to OS var"
+  set_fact:
+    GENERIC_pkg_urls: "{{ __GENERIC_pkg_urls }}"
+  when: GENERIC_pkg_urls is not defined
+
+
+- name: "Vars | No User Input | set GENERIC_bin_path to OS var"
+  set_fact:
+    GENERIC_dir_install: "{{ __GENERIC_dir_install }}"
+  when: GENERIC_dir_install is not defined
+  
+
+# Set conditional  
+- name: "Vars | System Arch | set GENERIC_pkg_urls"
+  set_fact:
+    GENERIC_pkg_urls: "{{ GENERIC_pkg_urls[ansible_architecture] }}"
+  when: GENERIC_pkg_urls[ansible_architecture]  is defined
+  

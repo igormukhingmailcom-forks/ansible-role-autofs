@@ -1,0 +1,8 @@
+---
+# defaults file for ansible-role-GENERIC
+
+# Pkg settings
+GENERIC_pkg_cache_time: 86400
+GENERIC_pkg_cache_update: Yes
+GENERIC_dir_tmp_download: /tmp
+GENERIC_dir_src_download: /usr/local/src

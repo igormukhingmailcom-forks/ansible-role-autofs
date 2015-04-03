@@ -1,0 +1,47 @@
+---
+# ansible-role-GENERIC/tasks/setup/Linux.yml
+
+
+# Need to Read, write, execute, download location for installer
+- name: "Setup | Linux | ensure temporary download dir can read, write, execute"
+  file:
+    path: "{{ GENERIC_dir_tmp_download }}"
+    state: directory
+    mode: "u+rwx"
+    owner: "{{ ansible_ssh_user }}"
+
+
+# tar file + install script
+- name: "Setup | Linux | download GENERIC's pkg file(s)"
+  get_url:
+    url: "{{ item.0 }}"
+    dest: "{{ GENERIC_dir_tmp_download }}/{{ item.1 }}.tar.gz"
+  with_together:
+    - GENERIC_pkg_urls
+    - GENERIC_pkg_names
+
+
+- name: "Setup | Linux | unarchive GENERIC's installer(s)"
+  command:
+    "tar xvf {{ GENERIC_dir_tmp_download }}/{{ item }}.tar.gz -C {{ GENERIC_dir_tmp_download }} --strip-components=1"
+  with_items: GENERIC_pkg_names
+
+
+- name: "Setup | Linux | ensure GENERIC's install directory exists with correct permissions"
+  file:
+    path: "{{ GENERIC_dir_install }}"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rx" 
+    owner: root
+
+
+- name: "Setup | Linux | run GENERIC's installer script"
+  command: "{{ GENERIC_dir_tmp_download }}/./install.sh -I {{ GENERIC_dir_install }}"
+
+
+- name: "Setup | Linux | ensure GENERIC's bin linked to /usr/bin"
+  file:
+    src: "{{ GENERIC_dir_install }}/{{ item }}/bin/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    state: link
+  with_items: GENERIC_pkg_names

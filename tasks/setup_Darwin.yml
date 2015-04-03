@@ -1,0 +1,10 @@
+---
+# ansible-role-GENERIC/tasks/setup_Darwin.yml
+
+
+# Install using homebrew
+- name: "Setup | Darwin | homebrew | ensure GENERIC's package(s) present"
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items: GENERIC_pkg_names

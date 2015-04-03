@@ -1,0 +1,6 @@
+---
+# ansible-role-GENERIC/vars/Linux_RedHat_Amazon.yml
+
+__GENERIC_pkg_names: []
+__GENERIC_pkg_urls: []
+__GENERIC_dir_install: ""
