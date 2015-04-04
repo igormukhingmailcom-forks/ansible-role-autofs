@@ -1,33 +1,18 @@
 ---
 # ansible-role-autofs/tasks/setup.yml
-# Likely... you will end up commenting out all but one of the three sections
 
 
-# 1. Build from source is most likely the most universal solution; but not recco because no auto updates
-# - include: "setup_Source.yml"
-#   when: autofs_build_from_source|default(false)
-
-
-# 2. include tasks by ansible_system  
 - include: "setup_Darwin.yml"
   when: ansible_system == 'Darwin'
 
 - include: "setup_FreeBSD.yml"
   when: ansible_system == 'FreeBSD'
 
-- include: "setup_Linux.yml"
-  when: ansible_system == 'Linux'
+- include: "setup_Linux_Debian.yml"
+  when: ansible_os_family == 'Debian'
 
+- include: "setup_Linux_RedHat.yml"
+  when: ansible_os_family == 'RedHat'
 
-# 3. include by ansible_os_family
-# - include: "setup_Darwin.yml"
-#   when: ansible_os_family == 'Darwin'
-
-# - include: "setup_Linux_Debian.yml"
-#   when: ansible_os_family == 'Debian'
-
-# - include: "setup_Linux_RedHat.yml"
-#   when: ansible_os_family == 'RedHat'
-
-# - include: "setup_Linux_Suse.yml"
-#   when: ansible_os_family == 'Suse'
+- include: "setup_Linux_Suse.yml"
+  when: ansible_os_family == 'Suse'

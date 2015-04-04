@@ -1,4 +1,9 @@
 ---
 # ansible-role-autofs/tasks/config.yml
 
+- name: "Config| ensure autofs starts at boot"
+  service: 
+    name: autofs 
+    state: started 
+    enabled: yes
 

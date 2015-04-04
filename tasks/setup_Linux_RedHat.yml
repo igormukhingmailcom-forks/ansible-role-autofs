@@ -9,26 +9,3 @@
     state: present
   with_items: autofs_pkg_names
 
-
-# Download and install RPM file for RedHat
-- name: "Setup | RedHat | ensure temporary download dir can read, write, execute"
-  file:
-    path: "{{ autofs_dir_tmp_download }}"
-    state: directory
-    mode: "u+rwx"
-    owner: "{{ ansible_ssh_user }}"
-
-- name: "Setup | RedHat | download autofs's rpm file(s)"
-  get_url:
-    url: "{{ item.0 }}"
-    dest: "{{ autofs_dir_tmp_download }}/{{ item.1 }}.rpm"
-  with_together:
-    - autofs_pkg_urls
-    - autofs_pkg_names
-
-- name: "Setup | RedHat | install autofs's rpm file(s)"
-  sudo: Yes
-  yum:
-    name: "{{ autofs_dir_tmp_download }}/{{ item }}.rpm"
-    state: present
-  with_items: autofs_pkg_names

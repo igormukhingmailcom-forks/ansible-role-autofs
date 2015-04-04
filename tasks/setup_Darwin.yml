@@ -2,9 +2,6 @@
 # ansible-role-autofs/tasks/setup_Darwin.yml
 
 
-# Install using homebrew
-- name: "Setup | Darwin | homebrew | ensure autofs's package(s) present"
-  homebrew_cask:
-    name: "{{ item }}"
-    state: present
-  with_items: autofs_pkg_names
+# No tasks. Comes OOB on OS X.
+# http://virtuallyhyper.com/2013/07/mount-various-file-system-with-autofs-on-mac-os-x-mountain-lion/
+
