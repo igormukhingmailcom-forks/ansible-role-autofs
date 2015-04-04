@@ -5,5 +5,5 @@
 # @TODO: If I ever get into or need FreeBSD then implement this
 # https://nixbsd.wordpress.com/2014/12/28/freebsd-nfs-automount-with-autofs/
 
-- name: "Setup| FreeBSD | not supported ATM"
+- name: "Setup | FreeBSD| not supported ATM"
   fail: "@TODO still"
