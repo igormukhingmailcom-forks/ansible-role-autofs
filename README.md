@@ -1,36 +1,7 @@
 Ansible Role: autofs [![Build Status](https://travis-ci.org/cmprescott/ansible-role-autofs.svg?branch=master)](https://travis-ci.org/cmprescott/ansible-role-autofs)
 =========
 
-- [ ] Write something like `Installs and configures autofs.`
-- [ ] Delete how to use this project
-
-This is a autofs ansible role that by forking you get 
-
-1. built in testing
-  - integration tests
-  - travis script
-2. enhanced readme 
-  - role variable yaml highlighting
-  - example playbook yaml highlighting
-  - OS requirement table
-3. precreated files 
-  - OS variable files
-  - import OS variable in main task
-  - OS pkg manager setup tasks
-  - configuration task
-4. consistent YAML
-  - Only uses the structured map
-  - variable naming format
-5. instructions 
-  - checkboxes in readme for steps to convert from autofs role to something useful
-  - all vanilla files are examples that by default won't modify the system
-
-I hope by forking this role
-
-1. It saves the trouble of the next steps after running `ansible-galaxy init ansible-role-autofs`
-2. It helps standarize ansible roles for maximum OS support
-3. It helps standarize ansible roles readme's look
-4. The checkboxes in the readme will give clearer instructions on best practices and rapid development
+Installs autofs. Manages indirect maps for autofs.
 
 Requirements
 ------------
