@@ -3,7 +3,7 @@
 
 
 # Look for distribution, os family, and then system. If none found. Error.
-- name: "Vars | Load | most specific OS variables available"
+- name: "Vars  | ALL    | most specific OS variables available"
   include_vars: "{{ item }}"
   with_first_found:
     # - "{{ ansible_system }}_{{ ansible_os_family }}_{{ ansible_distribution }}.yml"
@@ -12,27 +12,8 @@
 
 
 # Override OS variables
-- name: "Vars | No User Input | set autofs_pkg_names to OS var"
+- name: "Vars  | ALL    | No override; set autofs_pkg_names to OS var"
   set_fact:
     autofs_pkg_names: "{{ __autofs_pkg_names }}"
   when: autofs_pkg_names is not defined  
-    
-  
-- name: "Vars | No User Input | set autofs_pkg_urls  to OS var"
-  set_fact:
-    autofs_pkg_urls: "{{ __autofs_pkg_urls }}"
-  when: autofs_pkg_urls is not defined
 
-
-- name: "Vars | No User Input | set autofs_bin_path to OS var"
-  set_fact:
-    autofs_dir_install: "{{ __autofs_dir_install }}"
-  when: autofs_dir_install is not defined
-  
-
-# Set conditional  
-- name: "Vars | System Arch | set autofs_pkg_urls"
-  set_fact:
-    autofs_pkg_urls: "{{ autofs_pkg_urls[ansible_architecture] }}"
-  when: autofs_pkg_urls[ansible_architecture]  is defined
-  
