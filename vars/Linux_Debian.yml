@@ -1,5 +1,5 @@
 ---
 # ansible-role-autofs/vars/Linux_Debian.yml
 
-__autofs_pkg_names: [ "autofs", "rpcbind", "nfs-common" ]
+__autofs_pkg_names: [ "autofs" ]
 

@@ -1,5 +1,5 @@
 ---
 # ansible-role-autofs/vars/Linux_Suse.yml
 
-__autofs_pkg_names: [ "autofs", "nfs-client" ]
+__autofs_pkg_names: [ "autofs" ]
 
