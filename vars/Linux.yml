@@ -1,6 +1,0 @@
----
-# ansible-role-autofs/vars/Linux.yml
-
-__autofs_pkg_names: []
-__autofs_pkg_urls: []
-__autofs_dir_install: ""

@@ -1,6 +1,5 @@
 ---
 # ansible-role-autofs/vars/Linux_RedHat_Amazon.yml
 
-__autofs_pkg_names: []
-__autofs_pkg_urls: []
-__autofs_dir_install: ""
+__autofs_pkg_names: [ "autofs", "rpcbind", "nfs-utils", "nfs-utils-lib" ]
+
