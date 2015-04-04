@@ -1,6 +1,16 @@
 ---
 # defaults file for ansible-role-autofs
 
+# Input
+autofs_indirect_maps: []
+#  - name: nfs
+#    path: /mnt/nfs
+#    mounts:
+#      - name: "isos" 
+#        fstype: "nfs,rw,bg,hard,intr,tcp,resvport"
+#        url: "nfs.server.com:/data/isos"
+
+
 # Pkg settings
 autofs_pkg_cache_time: 86400
 autofs_pkg_cache_update: Yes

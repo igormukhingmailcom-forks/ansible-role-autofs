@@ -69,7 +69,13 @@ Role Variables
 - [ ] Updates comments in same style
 
 ```yaml
-autofs_setting_var: "val" # Short inline comment for settings
+autofs_indirect_maps:                              
+  - name: "nfs"                                    # Suggest use share type
+    path: /mnt/nfs                                 # Suggest use /mnt dir 
+    mounts:                                         
+      - name: "isos"                               # Suggest match folder url 
+        fstype: "nfs,rw,bg,hard,intr,tcp,resvport" # Add NFS options here 
+        url: "nfs.server.com:/data/isos"           # Add username/pw here 
 
 # Cross-OS default settings
 autofs_pkg_cache_time: 86400
