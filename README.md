@@ -35,19 +35,9 @@ I hope by forking this role
 Requirements
 ------------
 
-- [ ] Delete unsupported rows from this table 
-  - **EX**: Does not support all system's, delete `* | * | * | LTS+`
-- [ ] Delete redundant rows
-  - **EX**: Supports all Linux, delete all Linux rows except `Linux | * | * | LTS+`
-- [ ] Update the rows with supported OS
-  - **EX**: Requires Darwin (Yosemite) 10.9+, update `(Lion) 10.7+` to `(Mavericks) 10.9+`
-
 System | Family | Distribution | Versions
 -------|--------|--------------|---------:
-* | * | * | LTS+
-Darwin | * | * | (Lion) 10.7+
-FreeBSD | * | * | 8.4+
-Linux | * | * | LTS+
+Darwin | * | * | (Mtn Lion) 10.8+
 Linux | Debian | * | LTS+
 Linux | RedHat | * | LTS+
 Linux | Suse | * | LTS+
@@ -56,8 +46,11 @@ Linux | Suse | * | LTS+
 
 @TODO: Determine values/feasability/interest of these
 
+* | * | * | LTS+
 AIX | * | * | LTS+
+FreeBSD | * | * | 8.4+
 HP-UX | * | * | LTS+
+Linux | * | * | LTS+
 Linux | Alpine | * | LTS+
 Linux | Archlinux | * | N/A
 Linux | Debian | Debian | (Wheezy) 7+
