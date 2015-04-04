@@ -1,11 +1,11 @@
 ---
-# ansible-role-GENERIC/tasks/setup.yml
+# ansible-role-autofs/tasks/setup.yml
 # Likely... you will end up commenting out all but one of the three sections
 
 
 # 1. Build from source is most likely the most universal solution; but not recco because no auto updates
 # - include: "setup_Source.yml"
-#   when: GENERIC_build_from_source|default(false)
+#   when: autofs_build_from_source|default(false)
 
 
 # 2. include tasks by ansible_system  

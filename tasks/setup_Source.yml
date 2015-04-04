@@ -1,11 +1,11 @@
 ---
-# ansible-role-GENERIC/tasks/setup_source.yml
+# ansible-role-autofs/tasks/setup_source.yml
 
 
 # Need to Read, write, execute, download location for building source code
 - name: "Setup | Source | ensure temporary download dir can read, write, execute"
   file:
-    path: "{{ GENERIC_dir_tmp_download }}"
+    path: "{{ autofs_dir_tmp_download }}"
     state: directory
     mode: "u+rwx"
     owner: "{{ ansible_ssh_user }}"
@@ -13,7 +13,7 @@
 
 - name: "Setup | Source | ensure src dir can read, write, execute"
   file:
-    path: "{{ GENERIC_dir_src_download }}"
+    path: "{{ autofs_dir_src_download }}"
     state: directory
     mode: "u+rwx"
     owner: "{{ ansible_ssh_user }}"
@@ -22,23 +22,23 @@
 # Download source - TAR+HTTPS
 - name: "Setup | Source | ensure temporary download dir can read, write, execute"
   file:
-    path: "{{ GENERIC_dir_tmp_download }}"
+    path: "{{ autofs_dir_tmp_download }}"
     state: directory
     mode: "u+rwx"
     owner: "{{ ansible_ssh_user }}"
 
-- name: "Setup | Source | download GENERIC's src-tar(s)"
+- name: "Setup | Source | download autofs's src-tar(s)"
   get_url:
     url: "{{ item.0 }}"
-    dest: "{{ GENERIC_dir_tmp_download }}/{{ item.1 }}.tar.gz"
+    dest: "{{ autofs_dir_tmp_download }}/{{ item.1 }}.tar.gz"
   with_together:
-    - GENERIC_pkg_urls
-    - GENERIC_pkg_names
+    - autofs_pkg_urls
+    - autofs_pkg_names
  
-- name: "Setup | Source | extract GENERIC's src-tar(s)"
+- name: "Setup | Source | extract autofs's src-tar(s)"
   command:
-    "tar xvf {{ GENERIC_dir_tmp_download }}/{{ item }}.tar.gz -C {{ GENERIC_dir_src_download }} --strip-components=1"
-  with_items: GENERIC_pkg_names
+    "tar xvf {{ autofs_dir_tmp_download }}/{{ item }}.tar.gz -C {{ autofs_dir_src_download }} --strip-components=1"
+  with_items: autofs_pkg_names
 
 
 # Download source - Git
@@ -50,12 +50,12 @@
 
 
 # Build - Makefile
-#- name: "config, build, install GENERIC's package(s)"
+#- name: "config, build, install autofs's package(s)"
 #  sudo: Yes
 #  command: ./config && make && make install
 #  args: 
-#    chdir: "{{ GENERIC_dir_src_download }}/{{ item }}"
-#  with_items: GENERIC_pkg_names
+#    chdir: "{{ autofs_dir_src_download }}/{{ item }}"
+#  with_items: autofs_pkg_names
 
 
 # Build - Script

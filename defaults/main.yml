@@ -1,8 +1,8 @@
 ---
-# defaults file for ansible-role-GENERIC
+# defaults file for ansible-role-autofs
 
 # Pkg settings
-GENERIC_pkg_cache_time: 86400
-GENERIC_pkg_cache_update: Yes
-GENERIC_dir_tmp_download: /tmp
-GENERIC_dir_src_download: /usr/local/src
+autofs_pkg_cache_time: 86400
+autofs_pkg_cache_update: Yes
+autofs_dir_tmp_download: /tmp
+autofs_dir_src_download: /usr/local/src

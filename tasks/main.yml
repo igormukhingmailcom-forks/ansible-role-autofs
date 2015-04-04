@@ -1,5 +1,5 @@
 ---
-# ansible-role-GENERIC/tasks/main.yml
+# ansible-role-autofs/tasks/main.yml
 
 
 - name: "Variable loading tasks"

@@ -1,6 +1,6 @@
 ---
-# ansible-role-GENERIC/vars/Linux_Debian.yml
+# ansible-role-autofs/vars/Linux_Debian.yml
 
-__GENERIC_pkg_names: []
-__GENERIC_pkg_urls: []
-__GENERIC_dir_install: ""
+__autofs_pkg_names: []
+__autofs_pkg_urls: []
+__autofs_dir_install: ""

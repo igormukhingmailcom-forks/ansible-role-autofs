@@ -1,44 +1,44 @@
 ---
-# ansible-role-GENERIC/tasks/Setup_Suse.yml
+# ansible-role-autofs/tasks/Setup_Suse.yml
 
 
 # Install using zypper
-- name: "Setup | Suse | ensure GENERIC's repo(s) present"
+- name: "Setup | Suse | ensure autofs's repo(s) present"
   zypper_repository:
     name: "{{ item.0 }}-repo"
     repo: "{{ item.1 }}"
-    refresh: "{{ GENERIC_pkg_cache_update }}"
+    refresh: "{{ autofs_pkg_cache_update }}"
     state: present
   with_together:
-    - GENERIC_pkg_name
-    - GENERIC_pkg_urls
+    - autofs_pkg_name
+    - autofs_pkg_urls
 
-- name: "Setup | Suse | ensure GENERIC's package(s) present"
+- name: "Setup | Suse | ensure autofs's package(s) present"
   zypper:
     name: "{{ item }}"
     state: present
-  with_items: GENERIC_pkg_names
+  with_items: autofs_pkg_names
 
 
 # Download and install RPM file for Suse
 - name: "Setup | Suse | ensure temporary download dir can read, write, execute"
   file:
-    path: "{{ GENERIC_dir_tmp_download }}"
+    path: "{{ autofs_dir_tmp_download }}"
     state: directory
     mode: "u+rwx"
     owner: "{{ ansible_ssh_user }}"
 
-- name: "Setup | Suse | download GENERIC's rpm file(s)"
+- name: "Setup | Suse | download autofs's rpm file(s)"
   get_url:
     url: "{{ item.0 }}"
-    dest: "{{ GENERIC_dir_tmp_download }}/{{ item.1 }}.rpm"
+    dest: "{{ autofs_dir_tmp_download }}/{{ item.1 }}.rpm"
   with_together:
-    - GENERIC_pkg_urls
-    - GENERIC_pkg_names
+    - autofs_pkg_urls
+    - autofs_pkg_names
 
-- name: "Setup | Suse | install GENERIC's rpm file(s)"
+- name: "Setup | Suse | install autofs's rpm file(s)"
   sudo: Yes
   yum:
-    name: "{{ GENERIC_dir_tmp_download }}/{{ item }}.rpm"
+    name: "{{ autofs_dir_tmp_download }}/{{ item }}.rpm"
     state: present
-  with_items: GENERIC_pkg_names
+  with_items: autofs_pkg_names

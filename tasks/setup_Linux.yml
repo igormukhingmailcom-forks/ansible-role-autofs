@@ -1,47 +1,47 @@
 ---
-# ansible-role-GENERIC/tasks/setup/Linux.yml
+# ansible-role-autofs/tasks/setup/Linux.yml
 
 
 # Need to Read, write, execute, download location for installer
 - name: "Setup | Linux | ensure temporary download dir can read, write, execute"
   file:
-    path: "{{ GENERIC_dir_tmp_download }}"
+    path: "{{ autofs_dir_tmp_download }}"
     state: directory
     mode: "u+rwx"
     owner: "{{ ansible_ssh_user }}"
 
 
 # tar file + install script
-- name: "Setup | Linux | download GENERIC's pkg file(s)"
+- name: "Setup | Linux | download autofs's pkg file(s)"
   get_url:
     url: "{{ item.0 }}"
-    dest: "{{ GENERIC_dir_tmp_download }}/{{ item.1 }}.tar.gz"
+    dest: "{{ autofs_dir_tmp_download }}/{{ item.1 }}.tar.gz"
   with_together:
-    - GENERIC_pkg_urls
-    - GENERIC_pkg_names
+    - autofs_pkg_urls
+    - autofs_pkg_names
 
 
-- name: "Setup | Linux | unarchive GENERIC's installer(s)"
+- name: "Setup | Linux | unarchive autofs's installer(s)"
   command:
-    "tar xvf {{ GENERIC_dir_tmp_download }}/{{ item }}.tar.gz -C {{ GENERIC_dir_tmp_download }} --strip-components=1"
-  with_items: GENERIC_pkg_names
+    "tar xvf {{ autofs_dir_tmp_download }}/{{ item }}.tar.gz -C {{ autofs_dir_tmp_download }} --strip-components=1"
+  with_items: autofs_pkg_names
 
 
-- name: "Setup | Linux | ensure GENERIC's install directory exists with correct permissions"
+- name: "Setup | Linux | ensure autofs's install directory exists with correct permissions"
   file:
-    path: "{{ GENERIC_dir_install }}"
+    path: "{{ autofs_dir_install }}"
     state: directory
     mode: "u=rwx,g=rwx,o=rx" 
     owner: root
 
 
-- name: "Setup | Linux | run GENERIC's installer script"
-  command: "{{ GENERIC_dir_tmp_download }}/./install.sh -I {{ GENERIC_dir_install }}"
+- name: "Setup | Linux | run autofs's installer script"
+  command: "{{ autofs_dir_tmp_download }}/./install.sh -I {{ autofs_dir_install }}"
 
 
-- name: "Setup | Linux | ensure GENERIC's bin linked to /usr/bin"
+- name: "Setup | Linux | ensure autofs's bin linked to /usr/bin"
   file:
-    src: "{{ GENERIC_dir_install }}/{{ item }}/bin/{{ item }}"
+    src: "{{ autofs_dir_install }}/{{ item }}/bin/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     state: link
-  with_items: GENERIC_pkg_names
+  with_items: autofs_pkg_names

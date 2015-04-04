@@ -1,10 +1,10 @@
-Ansible Role: GENERIC
+Ansible Role: autofs
 =========
 
-- [ ] Write something like `Installs and configures GENERIC.`
+- [ ] Write something like `Installs and configures autofs.`
 - [ ] Delete how to use this project
 
-This is a GENERIC ansible role that by forking you get 
+This is a autofs ansible role that by forking you get 
 
 1. built in testing
   - integration tests
@@ -22,12 +22,12 @@ This is a GENERIC ansible role that by forking you get
   - Only uses the structured map
   - variable naming format
 5. instructions 
-  - checkboxes in readme for steps to convert from GENERIC role to something useful
+  - checkboxes in readme for steps to convert from autofs role to something useful
   - all vanilla files are examples that by default won't modify the system
 
 I hope by forking this role
 
-1. It saves the trouble of the next steps after running `ansible-galaxy init ansible-role-GENERIC`
+1. It saves the trouble of the next steps after running `ansible-galaxy init ansible-role-autofs`
 2. It helps standarize ansible roles for maximum OS support
 3. It helps standarize ansible roles readme's look
 4. The checkboxes in the readme will give clearer instructions on best practices and rapid development
@@ -105,18 +105,18 @@ Role Variables
 - [ ] Updates comments in same style
 
 ```yaml
-GENERIC_setting_var: "val" # Short inline comment for settings
+autofs_setting_var: "val" # Short inline comment for settings
 
 # Cross-OS default settings
-GENERIC_pkg_cache_time: 86400
-GENERIC_pkg_cache_update: Yes
-GENERIC_dir_tmp_download: /tmp
-GENERIC_dir_src_download: /usr/local/src
+autofs_pkg_cache_time: 86400
+autofs_pkg_cache_update: Yes
+autofs_dir_tmp_download: /tmp
+autofs_dir_src_download: /usr/local/src
 
 # OS settings; Overwridde OS vars files by setting these
-GENERIC_pkg_names: []
-GENERIC_pkg_urls: []
-GENERIC_dir_install: ""
+autofs_pkg_names: []
+autofs_pkg_urls: []
+autofs_dir_install: ""
 ```
 
 Dependencies
@@ -140,7 +140,7 @@ Basic playbook
 ```yaml
 - hosts: servers
   roles:
-     - role: ansible-role-GENERIC
+     - role: ansible-role-autofs
 ```
 
 Playbook using settings
@@ -148,8 +148,8 @@ Playbook using settings
 ```yaml
 - hosts: servers
   roles:
-     - role: ansible-role-GENERIC
-	   GENERIC_setting_var: "custom value"
+     - role: ansible-role-autofs
+	   autofs_setting_var: "custom value"
 ```
 
 License
@@ -161,7 +161,7 @@ Author Information
 ------------------
 
 - [ ] Put in your name
-- [ ] Global replace of word `GENERIC` with your role name
+- [X] Global replace of word `autofs` with your role name
 - [ ] When completed all checkboxes in readme, delete all checkboxes in readme 
 
 Lastname Firstname

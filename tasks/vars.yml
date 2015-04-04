@@ -1,5 +1,5 @@
 ---
-# ansible-role-GENERIC/tasks/vars.yml
+# ansible-role-autofs/tasks/vars.yml
 
 
 # Look for distribution, os family, and then system. If none found. Error.
@@ -12,27 +12,27 @@
 
 
 # Override OS variables
-- name: "Vars | No User Input | set GENERIC_pkg_names to OS var"
+- name: "Vars | No User Input | set autofs_pkg_names to OS var"
   set_fact:
-    GENERIC_pkg_names: "{{ __GENERIC_pkg_names }}"
-  when: GENERIC_pkg_names is not defined  
+    autofs_pkg_names: "{{ __autofs_pkg_names }}"
+  when: autofs_pkg_names is not defined  
     
   
-- name: "Vars | No User Input | set GENERIC_pkg_urls  to OS var"
+- name: "Vars | No User Input | set autofs_pkg_urls  to OS var"
   set_fact:
-    GENERIC_pkg_urls: "{{ __GENERIC_pkg_urls }}"
-  when: GENERIC_pkg_urls is not defined
+    autofs_pkg_urls: "{{ __autofs_pkg_urls }}"
+  when: autofs_pkg_urls is not defined
 
 
-- name: "Vars | No User Input | set GENERIC_bin_path to OS var"
+- name: "Vars | No User Input | set autofs_bin_path to OS var"
   set_fact:
-    GENERIC_dir_install: "{{ __GENERIC_dir_install }}"
-  when: GENERIC_dir_install is not defined
+    autofs_dir_install: "{{ __autofs_dir_install }}"
+  when: autofs_dir_install is not defined
   
 
 # Set conditional  
-- name: "Vars | System Arch | set GENERIC_pkg_urls"
+- name: "Vars | System Arch | set autofs_pkg_urls"
   set_fact:
-    GENERIC_pkg_urls: "{{ GENERIC_pkg_urls[ansible_architecture] }}"
-  when: GENERIC_pkg_urls[ansible_architecture]  is defined
+    autofs_pkg_urls: "{{ autofs_pkg_urls[ansible_architecture] }}"
+  when: autofs_pkg_urls[ansible_architecture]  is defined
   

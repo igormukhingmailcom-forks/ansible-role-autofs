@@ -1,42 +1,42 @@
 ---
-# ansible-role-GENERIC/tasks/setup_Debian.yml
+# ansible-role-autofs/tasks/setup_Debian.yml
 
 
 # Install from apt
-- name: "Setup | Debian | ensure GENERIC's repo(s) present"
+- name: "Setup | Debian | ensure autofs's repo(s) present"
   apt_repository:
     repo: "{{ item }}"
     state: present
-  with_items: GENERIC_pkg_urls
+  with_items: autofs_pkg_urls
 
 
-- name: "Setup | Debian | ensure GENERIC's package(s) present"
+- name: "Setup | Debian | ensure autofs's package(s) present"
   apt:
     name: "{{ item }}"
     state: present
-    update_cache: "{{ GENERIC_pkg_cache_update }}"
-    cache_valid_time: "{{ GENERIC_pkg_cache_time }}"
-  with_items: GENERIC_pkg_names
+    update_cache: "{{ autofs_pkg_cache_update }}"
+    cache_valid_time: "{{ autofs_pkg_cache_time }}"
+  with_items: autofs_pkg_names
 
 
 # Download and install DEB file for Debian (Debian, Ubuntu, etc)
 - name: "Setup | Debian | ensure temporary download dir can read, write, execute"
   file:
-    path: "{{ GENERIC_dir_tmp_download }}"
+    path: "{{ autofs_dir_tmp_download }}"
     state: directory
     mode: "u+rwx"
     owner: "{{ ansible_ssh_user }}"
 
-- name: "Setup | Debian | download GENERIC's deb file(s)"
+- name: "Setup | Debian | download autofs's deb file(s)"
   get_url:
     url: "{{ item.0 }}"
-    dest: "{{ GENERIC_dir_tmp_download }}/{{ item.1 }}.deb"
+    dest: "{{ autofs_dir_tmp_download }}/{{ item.1 }}.deb"
   with_together:
-    - GENERIC_pkg_urls
-    - GENERIC_pkg_names
+    - autofs_pkg_urls
+    - autofs_pkg_names
 
-- name: "Setup | Debian | install GENERIC's deb file(s)"
+- name: "Setup | Debian | install autofs's deb file(s)"
   sudo: Yes
   apt:
-    deb: "{{ GENERIC_dir_tmp_download }}/{{ item }}.deb"
-  with_items: GENERIC_pkg_names
+    deb: "{{ autofs_dir_tmp_download }}/{{ item }}.deb"
+  with_items: autofs_pkg_names
