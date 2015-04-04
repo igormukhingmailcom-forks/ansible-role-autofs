@@ -1,4 +1,4 @@
-Ansible Role: autofs
+Ansible Role: autofs [![Build Status](https://travis-ci.org/cmprescott/ansible-role-autofs.svg?branch=master)](https://travis-ci.org/cmprescott/ansible-role-autofs)
 =========
 
 - [ ] Write something like `Installs and configures autofs.`
