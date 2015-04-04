@@ -2,4 +2,5 @@
 # ansible-role-autofs/vars/Linux_Debian.yml
 
 __autofs_pkg_names: [ "autofs" ]
+__autofs_path_master: "/etc/auto.master"
 

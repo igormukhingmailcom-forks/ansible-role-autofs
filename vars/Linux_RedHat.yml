@@ -2,4 +2,4 @@
 # ansible-role-autofs/vars/Linux_RedHat_Amazon.yml
 
 __autofs_pkg_names: [ "autofs" ]
-
+__autofs_path_master: "/etc/auto.master"
