@@ -1,7 +1,33 @@
 ---
 # ansible-role-autofs/tasks/config.yml
 
-- name: "Config| ensure autofs starts at boot"
+
+- name: "Config| ALL    | create indirect map file(s) from template"
+  sudo: Yes
+  template:
+    src: "indirect_map.j2"
+    dest: "/etc/autofs_{{autofs_indirect_maps[name]}}"
+    mode: 600
+  with_items: autofs_indirect_maps
+
+
+- name: "Config| ALL    | ensure indirect map paths(s) exist"
+  sudo: Yes
+  file:
+    path: "{{autofs_indirect_maps[path]}}"
+    state: directory
+  with_items: autofs_indirect_maps
+
+
+- name: "Config| ALL    | add indirect map file(s) to autofs master file"
+  sudo: Yes
+  lineinfile: 
+    dest: "{{ __autofs_path_master }}"
+    line: "{{autofs_indirect_maps[path]}}			autofs_{{autofs_indirect_maps[name]}}"
+  with_items: autofs_indirect_maps
+
+
+- name: "Config| ALL    | ensure autofs starts at boot"
   service: 
     name: autofs 
     state: started 
